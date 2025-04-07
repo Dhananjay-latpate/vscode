@@ -58,11 +58,8 @@ export const TEXT_DIFF_EDITOR_ID = 'workbench.editors.textDiffEditor';
 export const BINARY_DIFF_EDITOR_ID = 'workbench.editors.binaryResourceDiffEditor';
 
 export interface IEditorDescriptor<T extends IEditorPane> {
-
 	/**
-	 * The unique type identifier of the editor. All instances
-	 * of the same `IEditorPane` should have the same type
-	 * identifier.
+	 * The unique type identifier of the editor.
 	 */
 	readonly typeId: string;
 
@@ -73,11 +70,16 @@ export interface IEditorDescriptor<T extends IEditorPane> {
 
 	/**
 	 * Instantiates the editor pane using the provided services.
+	 * @param instantiationService - The service to instantiate the editor.
+	 * @param group - The editor group context.
+	 * @returns An instance of the editor pane.
 	 */
 	instantiate(instantiationService: IInstantiationService, group: IEditorGroup): T;
 
 	/**
-	 * Whether the descriptor is for the provided editor pane.
+	 * Checks if the descriptor matches the provided editor pane.
+	 * @param editorPane - The editor pane to check.
+	 * @returns True if the descriptor matches the editor pane, otherwise false.
 	 */
 	describes(editorPane: T): boolean;
 }
